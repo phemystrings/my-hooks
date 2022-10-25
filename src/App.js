@@ -14,14 +14,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="state" element={<UseStateHooks />} />
-          <Route path="reducer" element={<UseReducer />} />
-          <Route path="ref" element={<UseRef />} />
+          <Route path="state/*" element={<UseStateHooks />} />
+          <Route path="reducer/*" element={<UseReducer />} />
+          <Route path="ref/*" element={<UseRef />} />
           <Route path='dashboard/*' element={<Dashboard />} />
-          <Route path='/effect' element={<UseEffect />} />
+          <Route path='effect/*' element={<UseEffect />} />
         </Routes>
-
-
       </main>
     </BrowserRouter>
   );

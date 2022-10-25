@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import apiRequest from '../../api/apiRequest'
 import { postOptions } from '../../api/apiRequest'
+import { FaTrashAlt } from 'react-icons/fa'
+
+// in this example, we are using the useState, useEffect and useRef for our crud operations
 
 const Ex2 = () => {
     const API_URL = 'http://localhost:4500/users'
     const [users, setUsers] = useState([])
     const formData = useRef(new FormData())
     const inputRef = useRef()
+    // this will trigger reloads, hence, we reset it in our Crud functions
     const [fetchError, setFetchError] = useState(null)
 
     const fetchData = async () => {
@@ -14,7 +18,7 @@ const Ex2 = () => {
         result && setFetchError(result.errMsg)
         setUsers(result.loadData)
     }
-    // useEffect to initialize the form and set focus to first input on Load
+    // useEffect to initialize the form and set focus to first input on every reload Load
     useEffect(() => {
         formData.current.reset()
         inputRef.current.focus()
@@ -34,20 +38,24 @@ const Ex2 = () => {
         const result = await apiRequest(API_URL, postOptions(newUser))
         result && setFetchError(result.errMsg)
         setUsers([...users, newUser])
+        // we manually reload the data so as to synchronize with the state
+        // the useEffect runs only when the page mounts
+        // the fetchData reloads the data manually
+        fetchData()
     }
     const deleteUser = async (id) => {
         const result = await apiRequest(`${API_URL}/${id}`, { method: 'DELETE' })
         result && setFetchError(result.errMsg)
         setUsers(users.filter(val => val.id !== id))
+        fetchData()
     }
     return (
-        <article>
+        <section>
             <form
                 ref={formData}
                 onSubmit={handleSubmit}
             >
                 <button>Submit</button>
-                <br />
                 <input
                     ref={inputRef}
                     name='username'
@@ -55,7 +63,6 @@ const Ex2 = () => {
                     type="text"
                     required
                 />
-                <br />
                 <input
                     required
                     name='email'
@@ -64,17 +71,20 @@ const Ex2 = () => {
                 />
             </form>
             <>
-                {fetchError ? (<p style={{ color: 'red', background: 'white', padding: '0.5rem', borderRadius: '0.3rem' }}> Error: {fetchError}</p>) : (users.length !== 0) ? (
+                {fetchError ? (<p className='listBox' style={{ width: '80%', color: 'red', background: 'white', padding: '0.5rem', borderRadius: '0.3rem' }}> Error: {fetchError}</p>) : (users.length !== 0) ? (
                     users.map((val, key) =>
-                        <div className='listBox' key={key}>
+                        <div className='listBox' style={{ width: '80%' }} key={key}>
                             <dt>{val.username}</dt>
-                            <button onClick={() => deleteUser(val.id)}>+</button>
+                            <FaTrashAlt
+                                className='trashBtn'
+                                onClick={() => deleteUser(val.id)}
+                            />
                         </div>
                     )
-                ) : <p style={{ color: 'teal', background: 'white', padding: '0.5rem', borderRadius: '0.3rem', textAlign: 'center' }}>Data List is Empty</p>
+                ) : <p className='listBox' style={{ color: 'teal', background: 'white', padding: '0.5rem', borderRadius: '0.3rem', textAlign: 'center', width: '80%' }}>Data List is Empty</p>
                 }
             </>
-        </article>
+        </section>
     )
 }
 

@@ -10,6 +10,7 @@ const reducer = (state, action) => {
         default: throw Error(`Unknown action type: ${action.type}`)
     }
 }
+// note the difference with the last example
 const formState = { id: '', username: '', pwd: '', myData: [] }
 
 const Ex3 = () => {
@@ -31,7 +32,7 @@ const Ex3 = () => {
     }
 
     return (
-        <article>
+        <section>
             <form onSubmit={handleSubmit} name='form'>
                 <button>Test Reducer</button>
                 <input
@@ -51,7 +52,7 @@ const Ex3 = () => {
                     onChange={(e) => dispatch({ type: 'changeInput', payload: e.target })}
                 />
             </form>
-        </article>
+        </section>
     )
 }
 

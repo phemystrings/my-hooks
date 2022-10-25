@@ -1,5 +1,7 @@
 import { useReducer } from 'react'
 // On submit, we just want to log the results of the input into our console
+// so keep your devtool console open for this section
+
 const reducer = (state, action) => {
     switch (action.type) {
         case 'changeInput':
@@ -21,7 +23,7 @@ const Ex2 = () => {
     }
 
     return (
-        <article>
+        <section>
             <form onSubmit={handleSubmit} >
                 <button>Test Reducer</button>
 
@@ -40,7 +42,7 @@ const Ex2 = () => {
                     onChange={(e) => dispatch({ type: 'changeInput', payload: e.target })}
                 />
             </form>
-        </article>
+        </section>
     )
 }
 

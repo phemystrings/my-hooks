@@ -15,21 +15,25 @@ const Ex3 = () => {
         newName.trim() !== '' && setNames([...names, newName])
         setNewName('')
     }
+    // just like the last examples
     return (
         <section>
-            <h2>useState and Arrays</h2>
+            <h2>Working with Arrays</h2>
             <article>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder='Add new name here'
+                        // this is the current state of the new name
                         value={newName}
                         required
+                        // this resets the current state to the value in the text box
                         onChange={(e) => setNewName(e.target.value)}
                     />
                     {/* Note that the submit button is not necessary in this example */}
                     {/* <button>Submit</button> */}
                 </form>
+                {/* here we display the current values in our database state */}
                 {names.map((name, key) => <div key={key}>{key + 1}:  {name}</div>)}
             </article>
         </section>

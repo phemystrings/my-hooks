@@ -1,5 +1,4 @@
 import { useReducer } from 'react'
-import { displayStyle } from '../../styles/DisplayStyles'
 // On submit, we just want to log the results of the input into our console
 function reducer(state, action) {
     switch (action.type) {
@@ -32,7 +31,7 @@ const Ex4 = () => {
     }
 
     return (
-        <article>
+        <section>
             <form onSubmit={handleSubmit} name='form'>
                 <button>Test Reducer</button>
                 <input
@@ -52,14 +51,14 @@ const Ex4 = () => {
                     onChange={(e) => dispatch({ type: 'changeInput', payload: e.target })}
                 />
             </form>
-            {!state.myData.length ? (<div style={displayStyle}>Datalist is empty</div>) : (
+            {!state.myData.length ? (<div className='listBox' style={{ width: '80%', padding: '0.5rem' }}>Datalist is empty</div>) : (
                 state.myData.map((data, key) =>
-                    <div key={key} style={displayStyle}>
+                    <div key={key} style={{ width: '80%', padding: '0.5rem' }} className='listBox'>
                         <dt>{data.username}</dt>
                         <dt>{data.id}</dt>
                     </div>))
             }
-        </article>
+        </section>
     )
 }
 

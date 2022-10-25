@@ -5,7 +5,6 @@ export const displayStyle = {
     background: 'white',
     padding: '0.5rem',
     marginBottom: '0.2rem',
-    width: '200px',
     border: '1px solid black'
 }
 

@@ -9,6 +9,7 @@
     "json-server": "^0.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
@@ -44,11 +45,7 @@
     "type": "git",
     "url": "git+https://github.com/phemystrings/my-hooks.git"
   },
-  "keywords": [
-    "react",
-    "hooks"
-  ],
-  "author": "Obafemi Showunmi",
+  "author": "Obafemi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/phemystrings/my-hooks/issues"

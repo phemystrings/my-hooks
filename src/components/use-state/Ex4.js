@@ -16,13 +16,15 @@ const Ex4 = () => {
 
     return (
         <section>
-            <h2>useState SearchBar</h2>
+            <h2>SearchBar</h2>
             <article>
                 <input
                     type="text"
                     placeholder='Search names'
+                    // the current state of the search input
                     value={search}
                     required
+                    // this resets the current state to the value in the search input
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 {
